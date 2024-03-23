@@ -95,7 +95,19 @@ export function CarForm() {
   );
 }
 
+export async function getCars() {
+  const cars = await fetch("http://0.0.0.0:3000/cars").then((res) =>
+    res.json(),
+  );
+
+  return cars;
+}
+
 export default function Home() {
+  const cardata = getCars();
+
+  console.log(cardata);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
