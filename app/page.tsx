@@ -34,6 +34,14 @@ export function CarForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // do something with the form vals
     console.log(values);
+    console.log(JSON.stringify(values));
+    fetch("0.0.0.0:3000/cars/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
   }
 
   return (
