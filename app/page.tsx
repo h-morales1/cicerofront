@@ -2,13 +2,6 @@
 import { Car, columns } from "./columns";
 import { DataTable } from "./data-table";
 
-async function onSubmit() {
-  // do something with the form vals
-  const response = await fetch("0.0.0.0:3000/cars/", {
-    method: "GET",
-  });
-}
-
 export async function getCars(): Promise<Car[]> {
   const cars = await fetch("http://0.0.0.0:3000/cars", { method: "GET" }).then(
     (res) => res.json(),
@@ -25,6 +18,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="container mx-auto py-10">
+        <h1>Cars list:</h1>
         <DataTable columns={columns} data={cardata} />
       </div>
     </main>
