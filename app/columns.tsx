@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,6 +44,7 @@ export const columns: ColumnDef<Car>[] = [
     header: "Actions",
     id: "actions",
     cell: ({ row }) => {
+      const router = useRouter();
       const car = row.original;
 
       return (
@@ -55,14 +57,13 @@ export const columns: ColumnDef<Car>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(car.id.toString())}
-            >
-              Delete Car
+            <DropdownMenuItem onClick={() => router.push(`/editcar/${car.id}`)}>
+              Edit Car
             </DropdownMenuItem>
+            <DropdownMenuItem>View Car</DropdownMenuItem>
+            <DropdownMenuItem>View Car Components</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit Car</DropdownMenuItem>
-            <DropdownMenuItem>View Car details</DropdownMenuItem>
+            <DropdownMenuItem>Delete Car</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
